@@ -16,7 +16,7 @@ pipeline {
                 sshagent(credentials: ['github_shh']) {
                     sh "git checkout dev"
                     sh "git pull"
-                    //sh "git branch -d staging"
+                    sh "git branch -d staging"
                     sh "git checkout -b staging"
                     sh "git push --set-upstream origin staging"
                     sh "python3 --version"
@@ -26,7 +26,7 @@ pipeline {
         stage('Building') {
             steps {
                 // Install dependencies
-                sh 'pip3 install -r backend/requirements.txt'
+                sh 'pip3 install -r requirements.txt'
             }
         }
         stage('Testing') {
