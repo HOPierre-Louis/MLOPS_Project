@@ -14,7 +14,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 sshagent(credentials: ['github_shh']) {
-                    sh "cd backend/"
                     sh "git checkout dev"
                     sh "git pull"
                     //sh "git branch -d staging"
@@ -27,13 +26,11 @@ pipeline {
         stage('Building') {
             steps {
                 // Install dependencies
-                sh "cd backend/"
                 sh 'pip3 install -r requirements.txt'
             }
         }
         stage('Testing') {
             steps {
-                sh "cd backend/"
                 sh 'python3 -m unittest'
             }
         }
@@ -41,7 +38,6 @@ pipeline {
             parallel {
                 stage('Docker Image'){
                     steps {
-                        sh "cd backend/"
                         // Build the Docker image
                         sh 'docker build -t itsvincenzoh/github-jenkins:latest .'
 
