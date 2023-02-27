@@ -5,12 +5,12 @@ import '../App.css';
 const AnimeForm = () =>{
     const [prediction, setPrediction] = useState();
     const [formState, setFormState] = useState({
-        title: "",
-        genre: "",
-        description: "",
-        type: "",
-        producer: "",
-        studio:""
+        Title: "",
+        Genre: "",
+        Synopsis: "",
+        Type: "",
+        Producer: "",
+        Studio:""
     });
 
     const formChangeHandler = (event) => {
@@ -25,7 +25,7 @@ const AnimeForm = () =>{
         event.preventDefault();
         console.log(formState);
         sendRequest(formState).then(response => {
-            setPrediction("Successful, prediction is "+JSON.stringify(response.pred)+".");
+            setPrediction("Successful, prediction is "+JSON.stringify(response.Rating)+".");
         }).catch(error =>{
             setPrediction("Error: "+ error.response.data+".");
             console.log(error);
@@ -38,12 +38,12 @@ const AnimeForm = () =>{
             <div className="container">
                 <div className = "form-box">
                     <form onChange={formChangeHandler} onSubmit={formSubmitHandler}>
-                        <input placeholder="Title" value={formState.title} type="text" name="title"/>
-                        <input placeholder="Genre" value={formState.genre} type="text" name="genre"/>
-                        <input placeholder="Description" value={formState.description} type="text" name="description"/>
-                        <input placeholder="Type" value={formState.type} type="text" name="type"/>
-                        <input placeholder="Producer" value={formState.producer} type="text" name="producer"/>
-                        <input placeholder="Studio" value={formState.studio} type="text" name="studio"/>
+                        <input placeholder="Title" value={formState.Title} type="text" name="Title"/>
+                        <input placeholder="Genre" value={formState.Genre} type="text" name="Genre"/>
+                        <input placeholder="Synopsis" value={formState.Synopsis} type="text" name="Synopsis"/>
+                        <input placeholder="Type" value={formState.Type} type="text" name="Type"/>
+                        <input placeholder="Producer" value={formState.Producer} type="text" name="Producer"/>
+                        <input placeholder="Studio" value={formState.Studio} type="text" name="Studio"/>
                         <input type="submit" value="SUBMIT"/>
                     </form>
                     <p>{prediction}</p>
