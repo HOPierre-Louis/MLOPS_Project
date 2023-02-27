@@ -16,7 +16,7 @@ pipeline {
                 sshagent(credentials: ['github_shh']) {
                     sh "git checkout dev"
                     sh "git pull"
-                    //sh "git branch -d staging"
+                    sh "git branch -d staging"
                     sh "git checkout -b staging"
                     sh "git push --set-upstream origin staging"
                     sh "python3 --version"
