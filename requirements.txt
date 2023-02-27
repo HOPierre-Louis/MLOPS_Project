@@ -1,4 +1,7 @@
 flask
 numpy
-tensorflow
-keras
+nltk
+flask-cors 
+pandas
+prometheus_flask_exporter
+scikit-learn==1.0.2
