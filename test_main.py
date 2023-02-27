@@ -7,8 +7,19 @@ class FlaskTestCase(unittest.TestCase):
         self.app = app.test_client()
 
     def test_predict(self):
-        data={'Title': 'Naruto', 'Genre': 'Action, Adventure, Romance', 'Synopsis': 'In the year 2071, humanity has colonized the monkeys with fire', 'Type': '', 'Producer': 'Bandai Visual', 'Studio': 'Madhouse'}
-        response = self.app.post('/predict_test/', json=data)
+        print('----------------------')
+        data =  {
+            "Title": "Naruto", 
+            "Genre": "Action, Adventure, Romance", 
+            "Synopsis": "In the year 2071, humanity has colonized the monkeys", 
+            "Type": "TV", 
+            "Producer": "['Bandai Visual']", 
+            "Studio": "['Madhouse']"
+        }
+        
+        response = self.app.post('/predict', json=data)
+        print(data)
+        print(response)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, {"Rating": 6.7481600394244206})
         
